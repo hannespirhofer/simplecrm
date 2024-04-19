@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { User } from '../../../models/user.class';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule, MatFormField } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { UserService } from '../../firebase-services/user.service';
+
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [MatCardModule, CommonModule, MatButtonModule],
+  providers: [provideNativeDateAdapter()],
+  imports: [MatCardModule, CommonModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatFormField, MatDatepickerModule, FormsModule],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
@@ -17,6 +24,9 @@ export class UserDetailComponent {
 
   userId: string = '';
   user: User = {} as User;
+  isEditMode: Boolean = false;
+  loading = false;
+  birthDate: Date = new Date();
 
   constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
 
@@ -46,6 +56,16 @@ export class UserDetailComponent {
       this.router.navigateByUrl('/user');
     } catch (error) {
       console.log('Problem deleting the User document.');
+    }
+  }
+
+  async saveUser() {
+    try {
+      await this.userService.updateUser(this.userId, this.user);
+      this.isEditMode = false;
+      console.log('User updated');
+    } catch (error) {
+      console.log('Problem updating the User document.');
     }
   }
 }

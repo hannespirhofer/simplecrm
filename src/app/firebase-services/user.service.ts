@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { User } from '../../models/user.class';
-import { Firestore, collection, addDoc, doc, getDoc, deleteDoc, query, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, doc, getDoc, deleteDoc, query, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -67,7 +67,15 @@ export class UserService {
   }
 
   //Update a document
-  updateUser() { }
+  async updateUser(docId: string, user:User) {
+    const docRef = doc(this.firestore, 'users', docId);
+    try {
+      await updateDoc(docRef, this.userToJSON(user));
+    } catch (e) {
+      console.error('Error removing the User: ', e);
+      throw e;
+    }
+  }
 
   userToJSON(obj: any) {
     return {
@@ -76,7 +84,8 @@ export class UserService {
       birthdate: obj.birthdate,
       street: obj.street,
       zipcode: obj.zipcode,
-      city: obj.city
+      city: obj.city,
+      email: obj.email
     };
   }
 

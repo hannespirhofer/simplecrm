@@ -8,7 +8,6 @@ import { MatFormFieldModule, MatFormField } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { User } from '../../../../models/user.class';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
@@ -34,7 +33,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styleUrl: './add-user.component.scss'
 })
 export class AddUserComponent {
-  firestore: Firestore = inject(Firestore)
 
   user: User = new User({});
   birthDate: Date = new Date();

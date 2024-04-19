@@ -2,7 +2,6 @@
   <mat-card-content>
     <table>
       <tr>
-        <th>ID</th>
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Birthdate</th>
@@ -11,7 +10,6 @@
         <th>City</th>
       </tr>
       <tr *ngFor="let user of users; let i = index" [routerLink]="['/user/' + user.id]" >
-        <td>{{ user.id | slice: 0 : 5 }}..</td>
         <td>{{ user.firstname }}</td>
         <td>{{ user.lastname }}</td>
         <td>{{ user.birthdate | date }}</td>

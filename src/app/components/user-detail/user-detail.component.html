@@ -1,13 +1,16 @@
-<mat-card>
-  <header>
+<mat-card class="card-header">
+  <div>
     <img src="./assets/img/profileimage.png">
     <div>
       <h1>{{ user.firstname }} {{ user.lastname }}</h1>
       <h3>{{ user.email }}</h3>
     </div>
-  </header>
+  </div>
+
+</mat-card>
+
+<mat-card *ngIf="!isEditMode" class="card-details">
   <mat-card-content>
-    <p><b>ID: </b>{{ userId }}</p>
     <p><b>Firstname: </b>{{ user.firstname }}</p>
     <p><b>Lastname: </b>{{ user.lastname }}</p>
     <p><b>E-mail: </b>{{ user.email }}</p>
@@ -16,8 +19,65 @@
     <p><b>Zipcode: </b>{{ user.zipcode }}</p>
     <p><b>City: </b>{{ user.city }}</p>
   </mat-card-content>
-  <div class="button-container">
-    <button mat-button color="">Edit</button>
+  <mat-card-actions class="button-container">
+    <button mat-button color="" (click)="isEditMode = !isEditMode">Edit</button>
     <button mat-button color="warn" (click)="deleteUser()">Delete</button>
-  </div>
+  </mat-card-actions>
 </mat-card>
+
+<form (ngSubmit)="saveUser()" #addUserForm="ngForm">
+<mat-card  *ngIf="isEditMode" class="card-details">
+  <mat-card-content>
+    <div class="flex row gap-16">
+      <mat-form-field class="half-width" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input name="firstname" [(ngModel)]="user.firstname" [disabled]="loading" matInput placeholder="First Name" required>
+      </mat-form-field>
+
+      <mat-form-field  class="half-width" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input name="lastname" [(ngModel)]="user.lastname" [disabled]="loading" matInput placeholder="Last Name" required>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input name="email" [(ngModel)]="user.email" type="email" [disabled]="loading" matInput placeholder="Email" required>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="full-width">
+        <mat-label>Birth date</mat-label>
+        <input name="birthdate" [(ngModel)]="birthDate" [disabled]="loading" matInput [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Street & House No.</mat-label>
+        <input name="street" [(ngModel)]="user.street" [disabled]="loading" matInput placeholder="Street & House No." required>
+      </mat-form-field>
+    </div>
+
+    <div  class="flex row gap-16">
+      <mat-form-field class="half-width" appearance="outline">
+        <mat-label>Zipcode</mat-label>
+        <input name="zipcode" [(ngModel)]="user.zipcode" type="number" [disabled]="loading" matInput placeholder="Zipcode" required>
+      </mat-form-field>
+
+      <mat-form-field class="half-width" appearance="outline">
+        <mat-label>City</mat-label>
+        <input name="city" [(ngModel)]="user.city" [disabled]="loading" matInput placeholder="City" required>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions class="button-container">
+    <button mat-button type="button" (click)="isEditMode = !isEditMode" color="">Close</button>
+    <button mat-button type="submit" [disabled]="loading" [disabled]="!addUserForm.form.valid" color="primary">Save</button>
+  </mat-card-actions>
+</mat-card>
+</form>
