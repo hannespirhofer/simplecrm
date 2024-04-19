@@ -1,0 +1,23 @@
+<mat-card>
+  <header>
+    <img src="./assets/img/profileimage.png">
+    <div>
+      <h1>{{ user.firstname }} {{ user.lastname }}</h1>
+      <h3>{{ user.email }}</h3>
+    </div>
+  </header>
+  <mat-card-content>
+    <p><b>ID: </b>{{ userId }}</p>
+    <p><b>Firstname: </b>{{ user.firstname }}</p>
+    <p><b>Lastname: </b>{{ user.lastname }}</p>
+    <p><b>E-mail: </b>{{ user.email }}</p>
+    <p><b>Birthdate: </b>{{ user.birthdate | date }}</p>
+    <p><b>Street: </b>{{ user.street }}</p>
+    <p><b>Zipcode: </b>{{ user.zipcode }}</p>
+    <p><b>City: </b>{{ user.city }}</p>
+  </mat-card-content>
+  <div class="button-container">
+    <button mat-button color="">Edit</button>
+    <button mat-button color="warn" (click)="deleteUser()">Delete</button>
+  </div>
+</mat-card>

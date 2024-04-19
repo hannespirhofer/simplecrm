@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-content>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Birthdate</th>
+        <th>Street</th>
+        <th>Zipcode</th>
+        <th>City</th>
+      </tr>
+      <tr *ngFor="let user of users; let i = index" [routerLink]="['/user/' + user.id]" >
+        <td>{{ user.id | slice: 0 : 5 }}..</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.birthdate | date }}</td>
+        <td>{{ user.street }}</td>
+        <td>{{ user.zipcode }}</td>
+        <td>{{ user.city }}</td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<button (click)="openDialog()" class="btn-add-user" mat-fab color="primary" matTooltip="Create a new User"
+  matTooltipPosition="above" matTooltipHideDelay="100000">
+  <mat-icon>add</mat-icon>
+</button>

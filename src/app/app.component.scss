@@ -1,0 +1,48 @@
+.mat-drawer-container {
+  height: 100vh;
+}
+
+.toolbar-top {
+  max-height: 72px;
+  height: 72px;
+}
+
+.sidenav {
+  width: 300px;
+
+}
+
+.logo-container {
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(0,0,0,.04);
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-height: 100%;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 16px;
+
+  li {
+    margin: 6px 0;
+    padding: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.733);
+    border-radius: 12px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0,0,0,.04);
+    }
+  }
+}
+
+.router-container {
+  padding: 16px 48px;
+}

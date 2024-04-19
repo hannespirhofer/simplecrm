@@ -1,0 +1,1 @@
+Move Header to Shared and create a Service to toggle the sidebar
