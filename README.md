@@ -4,8 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Setup Firestore Application and Firestore Database
 
-# Create firebase.config.ts file and update credentials as from Firebase
-Create src/environments/firebase.config.ts and copy the code below and insert your keys.
+## Configuration
+Create src/environments/firebase.config.ts and copy the code below. Then insert insert your config keys from Firestore.
 ```
 export const firebaseConfig = {
   projectId: "PROJECT_ID",
