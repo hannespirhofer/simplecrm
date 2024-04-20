@@ -4,8 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Setup Firestore Application and Firestore Database
 
-# Create firebase.consfig.ts file and update credentials as from Firebase
-// src/environments/firebase.config.ts
+# Create firebase.config.ts file and update credentials as from Firebase
+Create src/environments/firebase.config.ts and copy the code below and insert your keys.
+```
 export const firebaseConfig = {
   projectId: "PROJECT_ID",
   appId: "APP_ID",
@@ -14,6 +15,8 @@ export const firebaseConfig = {
   authDomain: "AUTH_DOMAIN",
   messagingSenderId: "MESSAGING_SENDER_ID"
 };
+```
+
 
 ## Development server
 
