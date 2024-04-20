@@ -2,6 +2,7 @@
 
 #Key Files
 /src/app/app.config.ts
+delete.txt
 
 # Compiled output
 /dist
