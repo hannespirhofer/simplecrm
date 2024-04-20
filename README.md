@@ -2,6 +2,19 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
 
+## Setup Firestore Application and Firestore Database
+
+# Create firebase.consfig.ts file and update credentials as from Firebase
+// src/environments/firebase.config.ts
+export const firebaseConfig = {
+  projectId: "PROJECT_ID",
+  appId: "APP_ID",
+  storageBucket: "STORAGE_BUCKET",
+  apiKey: "API_KEY",
+  authDomain: "AUTH_DOMAIN",
+  messagingSenderId: "MESSAGING_SENDER_ID"
+};
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
