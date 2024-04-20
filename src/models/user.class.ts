@@ -1,21 +1,14 @@
 export class User {
-  id: string;
-  firstname: string;
-  lastname: string;
-  birthdate: number; //Timestamp
-  street: string;
-  zipcode: Number;
-  city: string;
-  email: string;
+  id: string = '';
+  firstname: string = 'Max';
+  lastname: string = 'Mustermann';
+  birthdate: number = 0; //Timestamp
+  street: string = 'Teststraße 12';
+  zipcode: Number = 0;
+  city: string = 'Berlin';
+  email: string = 'mail@test.de';
 
-  constructor(obj: any) {
-    this.id = obj ? obj.id : '';
-    this.firstname = obj ? obj.firstname : '';
-    this.lastname = obj ? obj.lastname : '';
-    this.birthdate = obj ? obj.birthdate : 0;
-    this.street = obj ? obj.street : '';
-    this.zipcode = obj ? obj.zipcode : 0;
-    this.city = obj ? obj.city : '';
-    this.email = obj ? obj.email : '';
+  constructor(init?: Partial<User>) {
+    Object.assign(this, init);
   }
 }

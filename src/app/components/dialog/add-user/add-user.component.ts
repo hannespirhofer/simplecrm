@@ -1,6 +1,6 @@
 import { UserService } from './../../../firebase-services/user.service';
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef, MatDialogContent, MatDialogActions, MatDialogTitle } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -48,6 +48,7 @@ export class AddUserComponent {
   }
 
   async saveUser() {
+    this.user.birthdate = new Date(this.user.birthdate).getTime();
     this.loading = true;
     this.userservice.addUser(this.user)
       .then(() => {

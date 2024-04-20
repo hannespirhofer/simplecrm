@@ -10,15 +10,20 @@ export class UserService {
   private firestore: Firestore = inject(Firestore)
   private usersRef = collection(this.firestore, "users");
 
-  private usersSub?: () => void;  // Store the unsubscribe function
+  private usersSub?: () => void;  // Store the unsubscribe users function
   private usersSource = new BehaviorSubject<User[]>([]);
+
+  private userSub?: () => void;  // Store the unsubscribe user function
+  private userSource = new BehaviorSubject<User>(new User());
+
+
   public users$ = this.usersSource.asObservable();  // Expose as an observable
+  public user$ = this.userSource.asObservable();  // Expose as an observable
 
   private birthDate: Date = new Date();
 
   //addDoc Add Document to collection
   async addUser(user: User) {
-    user.birthdate = this.birthDate.getTime();
     try {
       const docRef = await addDoc(this.usersRef, this.userToJSON(user));
       console.log('Document written with the ID: ', docRef.id);
@@ -43,15 +48,23 @@ export class UserService {
   }
 
   //Get a single document
-  async getSingleUser(docId: string): Promise<User | null> {
+  getSingleUser(docId: string): void {
     const docRef = doc(this.firestore, 'users', docId);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      return docSnap.data() as User;
-    } else {
-      console.log('Document cant be found with the Id: ', docId);
-      return null;
+    if (this.userSub) {
+      this.userSub();
     }
+
+    this.userSub = onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const userData = docSnap.data() as User;
+        this.userSource.next(userData);
+      } else {
+        console.log('Document cant be found with the Id: ', docId);
+        this.userSource.next(new User());
+      }
+    }, (error) => {
+      console.error('Error fetching document: ', error);
+    });
   }
 
   // Delte a document
@@ -102,9 +115,14 @@ export class UserService {
     }
   }
 
-  stopUserListListener() {
+  stopServiceListener() {
     if (this.usersSub) {
       this.usersSub();
+      this.usersSub = undefined;
+    }
+    if (this.userSub) {
+      this.userSub();
+      this.userSub = undefined;
     }
   }
 }

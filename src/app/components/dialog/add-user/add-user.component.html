@@ -29,7 +29,7 @@
     <div>
       <mat-form-field class="full-width">
         <mat-label>Birth date</mat-label>
-        <input name="birthdate" [(ngModel)]="birthDate" [disabled]="loading" matInput [matDatepicker]="picker" required>
+        <input name="birthdate" [(ngModel)]="user.birthdate" [disabled]="loading" matInput [matDatepicker]="picker" required>
         <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>

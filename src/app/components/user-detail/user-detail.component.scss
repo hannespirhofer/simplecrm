@@ -44,3 +44,14 @@
     flex: 1;
   }
 }
+
+.more-vert-button {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+}

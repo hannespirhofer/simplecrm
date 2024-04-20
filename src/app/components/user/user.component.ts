@@ -39,7 +39,7 @@ export class UserComponent {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.usersSubscription.unsubscribe();
-    this.userService.stopUserListListener();
+    this.userService.stopServiceListener();
   }
 
   openDialog(): void {
