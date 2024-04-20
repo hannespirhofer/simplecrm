@@ -1,1 +1,3 @@
+Added some text here inside the dialog/components branch
 Move Header to Shared and create a Service to toggle the sidebar
+Move Credentials to other file and gitignore this file and update Readme.txt and explain what to enter(ref. to firestore api data)
