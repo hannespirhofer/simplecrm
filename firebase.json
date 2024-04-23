@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist\\simplecrm\\browser",
+    "public": "dist/simplecrm/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

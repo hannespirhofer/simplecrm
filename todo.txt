@@ -1,2 +1,37 @@
 Move Header to Shared and create a Service to toggle the sidebar
 Move Credentials to other file and gitignore this file and update Readme.txt and explain what to enter(ref. to firestore api data)
+
+
+Natürlich! Ein CRM (Customer Relationship Management) ist eine Software, die Unternehmen dabei hilft, Kundenbeziehungen zu verwalten und zu verbessern. Hier sind einige Aufgaben für ein einfaches CRM (MVP) und einige für ein erweitertes CRM:
+
+Für das einfache CRM (MVP):
+
+Kontaktverwaltung: Die Möglichkeit, grundlegende Informationen über Kunden zu speichern, wie Namen, Kontaktdaten und vielleicht ein paar Notizen.
+
+Kontaktinormationen: ok
+Notizen: open
+
+
+Aufgabenverwaltung: Ein einfaches System, um Aufgaben im Zusammenhang mit Kunden zu erstellen und zu verfolgen, wie z. B. Follow-ups oder Rückrufe.
+Kommunikationsverlauf: Die Fähigkeit, Interaktionen mit Kunden zu protokollieren, wie z. B. E-Mails oder Anrufe, damit das Team den Überblick behalten kann.
+
+
+
+
+
+
+
+
+
+
+
+
+Für das erweiterte CRM könntest du hinzufügen:
+
+E-Mail-Integration: Die Möglichkeit, E-Mails direkt aus dem CRM heraus zu senden und zu empfangen, um den Kommunikationsprozess zu vereinfachen.
+Automatisierung: Die Möglichkeit, wiederkehrende Aufgaben zu automatisieren, wie z. B. das Versenden von Follow-up-E-Mails, um Zeit zu sparen.
+Berichterstattung und Analyse: Tools, um Daten zu analysieren und Berichte zu erstellen, die Einblicke in den Vertriebsprozess und die Kundeninteraktionen bieten.
+Social-Media-Integration: Die Möglichkeit, Kundenaktivitäten in den sozialen Medien zu verfolgen, um ein vollständigeres Bild der Kundeninteraktionen zu erhalten.
+Mobile App: Eine mobile Anwendung, damit Teammitglieder auch unterwegs auf Kundeninformationen zugreifen können, was die Flexibilität erhöht.
+Integration von Drittanbieter-Anwendungen: Die Möglichkeit, das CRM mit anderen Tools zu verknüpfen, die das Unternehmen bereits verwendet, um den Workflow zu verbessern.
+Mit diesen Funktionen kannst du ein solides CRM erstellen, das die Kundenverwaltung erleichtert und die Effizienz steigert, egal ob in einem kleinen Startup oder einem etablierten Unternehmen.

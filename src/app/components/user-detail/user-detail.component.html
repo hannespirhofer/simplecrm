@@ -1,34 +1,60 @@
-<mat-card class="card-header">
-  <button mat-icon-button class="more-vert-button" [matMenuTriggerFor]="userMenu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
+<div class="card-container">
+  <mat-card class="card-header">
+    <button mat-icon-button class="more-vert-button" [matMenuTriggerFor]="userMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
 
-  <mat-menu #userMenu="matMenu" class="userMenu" xPosition="before">
-    <div class="menuContainer">
-      <button mat-button color="" (click)="openDialog()">Edit</button>
-    <button mat-button color="warn" (click)="deleteUser()">Delete</button>
-    </div>
+    <mat-menu #userMenu="matMenu" class="userMenu" xPosition="before">
+      <div class="menuContainer">
+        <button mat-button color="" (click)="openDialog()">Edit</button>
+        <button mat-button color="warn" (click)="deleteUser()">Delete</button>
+      </div>
+    </mat-menu>
 
-  </mat-menu>
-
-  <div>
-    <img src="./assets/img/profileimage.png">
     <div>
-      <h1>{{ user.firstname }} {{ user.lastname }}</h1>
-      <h3>{{ user.email }}</h3>
+      <img src="./assets/img/profileimage.png">
+      <div>
+        <h1>{{ user.firstname }} {{ user.lastname }}</h1>
+        <h3>{{ user.email }}</h3>
+      </div>
     </div>
-  </div>
-</mat-card>
+  </mat-card>
 
-<mat-card class="card-details">
-  <mat-card-header>
-    <mat-card-title>Adress Details</mat-card-title>
-  </mat-card-header>
-  <br>
-  <mat-card-content>
-    <p><b>Birthdate: </b>{{ user.birthdate | date }}</p>
-    <p><b>Street: </b>{{ user.street }}</p>
-    <p><b>Zipcode: </b>{{ user.zipcode }}</p>
-    <p><b>City: </b>{{ user.city }}</p>
-  </mat-card-content>
-</mat-card>
+  <mat-card class="card-details">
+    <mat-card-header>
+      <mat-card-title>Adress Details</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+      <p><b>Birthdate: </b>{{ user.birthdate | date }}</p>
+      <p><b>Street: </b>{{ user.street }}</p>
+      <p><b>Zipcode: </b>{{ user.zipcode }}</p>
+      <p><b>City: </b>{{ user.city }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card-details">
+
+    <button mat-icon-button class="more-vert-button" *ngIf="!isEditMode" (click)="isEditMode = ! isEditMode">
+      <mat-icon mat-mini-fab color="primary">edit</mat-icon>
+    </button>
+
+    <button mat-icon-button class="more-vert-button" *ngIf="isEditMode" (click)="saveNote()">
+      <mat-icon mat-mini-fab color="primary">check</mat-icon>
+    </button>
+
+    <mat-card-header>
+      <mat-card-title>Internal Notes</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+      <p *ngIf="!isEditMode">{{ user.notes }}</p>
+
+      <mat-form-field *ngIf="isEditMode" class="full-width">
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3"
+          cdkAutosizeMaxRows="5" [(ngModel)]="user.notes">{{ user.notes }}</textarea>
+      </mat-form-field>
+
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -15,6 +15,7 @@ import { UserService } from '../../firebase-services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { Subscription } from 'rxjs';
+import { CdkTextareaAutosize, TextFieldModule } from '@angular/cdk/text-field';
 
 
 @Component({
@@ -31,7 +32,9 @@ import { Subscription } from 'rxjs';
     MatDatepickerModule,
     FormsModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    CdkTextareaAutosize,
+    TextFieldModule
   ],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
@@ -44,6 +47,7 @@ export class UserDetailComponent {
   user: User = {} as User;
   loading = false;
   birthDate: Date = new Date();
+  isEditMode: Boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -86,6 +90,11 @@ export class UserDetailComponent {
     } catch (error) {
       console.log('Problem updating the User document.');
     }
+  }
+
+  async saveNote() {
+    await this.saveUser();
+    this.isEditMode = false;
   }
 
   openDialog(): void {

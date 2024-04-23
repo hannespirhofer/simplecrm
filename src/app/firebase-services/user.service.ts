@@ -7,20 +7,17 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private firestore: Firestore = inject(Firestore)
+  private firestore: Firestore = inject(Firestore);
+
   private usersRef = collection(this.firestore, "users");
 
-  private usersSub?: () => void;  // Store the unsubscribe users function
   private usersSource = new BehaviorSubject<User[]>([]);
+  public users$ = this.usersSource.asObservable();
+  private usersSub?: () => void;
 
-  private userSub?: () => void;  // Store the unsubscribe user function
   private userSource = new BehaviorSubject<User>(new User());
-
-
-  public users$ = this.usersSource.asObservable();  // Expose as an observable
-  public user$ = this.userSource.asObservable();  // Expose as an observable
-
-  private birthDate: Date = new Date();
+  public user$ = this.userSource.asObservable();
+  private userSub?: () => void;
 
   //addDoc Add Document to collection
   async addUser(user: User) {
@@ -98,7 +95,8 @@ export class UserService {
       street: obj.street,
       zipcode: obj.zipcode,
       city: obj.city,
-      email: obj.email
+      email: obj.email,
+      notes: obj.notes
     };
   }
 
@@ -109,9 +107,10 @@ export class UserService {
       lastname: obj.lastname ?? "",
       birthdate: obj.birthdate ?? 0,
       street: obj.street ?? "",
-      zipcode: obj.zipcode ?? 0,
+      zipcode: obj.zipcode ?? "",
       city: obj.city ?? "",
-      email: obj.email ?? ""
+      email: obj.email ?? "",
+      notes: obj.notes ?? ""
     }
   }
 

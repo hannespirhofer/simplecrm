@@ -4,8 +4,13 @@
   box-sizing: border-box;
 }
 
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .card-header {
-  margin-bottom: 16px;
   background-color: orange;
   color: white;
   min-height: 350px;

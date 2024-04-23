@@ -1,12 +1,13 @@
 export class User {
   id: string = '';
-  firstname: string = 'Max';
-  lastname: string = 'Mustermann';
-  birthdate: number = 0; //Timestamp
-  street: string = 'Teststraße 12';
-  zipcode: Number = 0;
-  city: string = 'Berlin';
-  email: string = 'mail@test.de';
+  firstname: string = '';
+  lastname: string = '';
+  birthdate: number = NaN;
+  street: string = '';
+  zipcode: string = '';
+  city: string = '';
+  email: string = '';
+  notes: string = '';
 
   constructor(init?: Partial<User>) {
     Object.assign(this, init);
