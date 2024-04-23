@@ -1,1 +1,29 @@
-<p>add-note works!</p>
+<form (ngSubmit)="saveNote()" #addNoteForm="ngForm">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <h2 mat-dialog-title>New Note</h2>
+  <mat-dialog-content class="content-outline-fix">
+
+    <div class="flex row gap-16">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input name="title" [(ngModel)]="title" [disabled]="loading" matInput placeholder="Title" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Text</mat-label>
+        <input name="lastname" [(ngModel)]="text" [disabled]="loading" matInput placeholder="Text" required>
+      </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Favorite</mat-label>
+      <input name="favorite" [(ngModel)]="isMarked" [disabled]="loading" matInput placeholder="Favorite" required>
+    </mat-form-field>
+    </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button type="button" mat-button (click)="closeDialog()" [disabled]="loading">Cancel</button>
+    <button mat-button type="submit" [disabled]="loading" [disabled]="!addNoteForm.form.valid">Save</button>
+  </mat-dialog-actions>
+</form>

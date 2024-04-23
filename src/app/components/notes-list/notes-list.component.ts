@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddNoteComponent } from '../dialog/add-note/add-note.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +15,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 @Component({
   selector: 'app-notes-list',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, RouterModule, MatButtonModule, MatTooltipModule, MatDialogModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatIconModule,
+    RouterModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatAccordion
+  ],
   templateUrl: './notes-list.component.html',
   styleUrl: './notes-list.component.scss'
 })
@@ -22,9 +33,10 @@ export class NotesListComponent {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(private ns: NotesService, public dialog: MatDialog){}
+  constructor(private ns: NotesService, public dialog: MatDialog) { }
 
   notes: Note[] = [];
+  panelOpenState = false;
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

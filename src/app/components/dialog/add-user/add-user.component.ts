@@ -40,7 +40,7 @@ export class AddUserComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AddUserComponent>,
-    public userservice: UserService
+    private userservice: UserService
   ) { }
 
   closeDialog(): void {

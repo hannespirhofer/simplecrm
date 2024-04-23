@@ -1,25 +1,20 @@
-<mat-card>
-  <mat-card-content>
-    <table>
-      <tr>
-        <th>Title</th>
-        <th>Text</th>
-        <th>Created</th>
-        <th>Modified</th>
-        <th>Marked</th>
-        <th>Actions</th>
-      </tr>
-      <tr *ngFor="let note of notes; let i = index" [routerLink]="['/note/' + note.id]" >
-        <td>{{ note.title }}</td>
-        <td>{{ note.text }}</td>
-        <td>{{ note.created_timestamp | date }}</td>
-        <td>{{ note.modified_timestamp | date }}</td>
-        <td>{{ note.isMarked }}</td>
-        <td>Delete</td>
-      </tr>
-    </table>
-  </mat-card-content>
-</mat-card>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let note of notes">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ note.title }}
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{ note.text }}</p>
+    <mat-action-row>
+      <button mat-button >Edit</button>
+      <button mat-button color="warn">Delete</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+
 
 <button (click)="openDialog()" class="btn-add-note" mat-fab color="primary" matTooltip="Create a new Note"
   matTooltipPosition="above" matTooltipHideDelay="100000">
