@@ -1,1 +1,62 @@
-<h1>Dashboard</h1>
+<div class="container">
+  <mat-grid-list cols="3" rowHeight="100px" gutterSize="16px">
+
+    <mat-grid-tile colspan="2" rowspan="2">
+      <mat-card class="dash-card">
+        <mat-card-header>
+          <mat-card-title>Latest Notes</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          Show notes here
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dash-card">
+        <mat-card-header>
+          <mat-card-title>Total Users</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          {{ totalUsers | async }}
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dash-card">
+        <mat-card-header>
+          <mat-card-title>Time</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <app-live-clock timepipe="mediumTime"></app-live-clock>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dash-card">
+        <mat-card-header>
+          <mat-card-title>Date</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <app-live-clock timepipe="E, d LLL y"></app-live-clock>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dash-card">
+        <mat-card-header>
+          <mat-card-title>Calendar Week</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <app-live-clock timepipe="w"></app-live-clock>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+
+  </mat-grid-list>
+
+</div>

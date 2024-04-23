@@ -1,0 +1,49 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px solid rgba(0, 0, 0, .4);
+    cursor: pointer;
+
+    &:first-child {
+      cursor: auto;
+    }
+
+    &:last-child {
+      border: none;
+    }
+
+    &:hover {
+      &:not(:first-child) {
+        background-color: rgba(0, 0, 0, .04);
+      }
+    }
+  }
+
+  th {
+    color: rgba(0, 0, 0, .733);
+  }
+
+  th,
+  td {
+    text-align: start;
+    padding: 24px 12px;
+  }
+}
+
+.btn-add-note {
+  position: absolute;
+  z-index: 99;
+  bottom: 56px;
+  right: 56px;
+}
+
+.delete-link {
+  color: rgba(255, 0, 0, 0.658);
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -44,5 +44,7 @@ ul {
 }
 
 .router-container {
-  padding: 16px 48px;
+  padding: 48px;
+  box-sizing: border-box;
+  overflow: auto;
 }

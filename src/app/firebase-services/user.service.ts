@@ -8,7 +8,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UserService {
   private firestore: Firestore = inject(Firestore);
-
   private usersRef = collection(this.firestore, "users");
 
   private usersSource = new BehaviorSubject<User[]>([]);
@@ -18,6 +17,11 @@ export class UserService {
   private userSource = new BehaviorSubject<User>(new User());
   public user$ = this.userSource.asObservable();
   private userSub?: () => void;
+
+  private userCountSource = new BehaviorSubject<number>(0);
+  public userCount$ = this.userCountSource.asObservable();
+  private userCountSub?: () => void;
+
 
   //addDoc Add Document to collection
   async addUser(user: User) {
@@ -42,6 +46,17 @@ export class UserService {
       });
       this.usersSource.next(updatedUsers);
     });
+  }
+
+  // Get qty of Users in the db
+  fetchUserCount() {
+    if (this.userCountSub) {
+      this.userCountSub();
+    }
+    const q = query(this.usersRef);
+    this.userCountSub =  onSnapshot(q, (querySnapshot) => {
+      this.userCountSource.next(querySnapshot.size);
+    })
   }
 
   //Get a single document
@@ -122,6 +137,10 @@ export class UserService {
     if (this.userSub) {
       this.userSub();
       this.userSub = undefined;
+    }
+    if (this.userCountSub) {
+      this.userCountSub();
+      this.userCountSub = undefined;
     }
   }
 }
