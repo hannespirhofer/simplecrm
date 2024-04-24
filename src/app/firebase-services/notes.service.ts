@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, addDoc, collection, onSnapshot, query } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, deleteDoc, doc, onSnapshot, query, setDoc, updateDoc } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { Note } from '../../models/note.interface';
 
@@ -37,8 +37,21 @@ export class NotesService {
     }
   }
 
-  fetchSingleNote(id: string) {
+  async updateNote(noteId: string, note: Partial<Note>) {
+    try {
+      const docRef = doc(this.firestore, 'notes', noteId);
+      await updateDoc(docRef, this.noteToJSON(note));
+    } catch (error) {
+      console.error('Couldnt update the note. ', error);
+    }
+  }
 
+  async deleteNote(noteId: string) {
+    try {
+      await deleteDoc(doc(this.firestore, "notes", noteId));
+    } catch (error) {
+      console.error('Falied to delete not with ID: ', noteId);
+    }
   }
 
   setObject(obj: Partial<Note>, noteid: string): Note {

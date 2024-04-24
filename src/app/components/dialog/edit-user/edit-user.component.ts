@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { User } from '../../../models/user.class';
+import { User } from '../../../../models/user.class';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
-import { UserService } from '../../firebase-services/user.service';
+import { UserService } from '../../../firebase-services/user.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';

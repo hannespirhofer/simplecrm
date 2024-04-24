@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NotesService } from '../../firebase-services/notes.service';
 import { Note } from '../../../models/note.interface';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddNoteComponent } from '../dialog/add-note/add-note.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { EditNoteComponent } from '../dialog/edit-note/edit-note.component';
 
 @Component({
   selector: 'app-notes-list',
@@ -33,8 +34,12 @@ export class NotesListComponent {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(private ns: NotesService, public dialog: MatDialog) { }
+  constructor(
+    private ns: NotesService,
+    public dialog: MatDialog,
+    private aR: ActivatedRoute) { }
 
+  noteId: string = '';
   notes: Note[] = [];
   panelOpenState = false;
 
@@ -47,8 +52,25 @@ export class NotesListComponent {
     })
   }
 
-  openDialog(): void {
+  async deleteNote(id: string) {
+    try {
+      await this.ns.deleteNote(id);
+      console.log('Deleted Note with ID: ', id);
+    } catch (error) {
+      console.log('Problem deleting the Note document.');
+    }
+  }
+
+  openNewNoteDialog(): void {
     this.dialog.open(AddNoteComponent)
+  }
+
+  openEditNoteDialog(note: Note): void {
+    this.dialog.open(EditNoteComponent, {
+      data: {
+        note: note
+      }
+    })
   }
 
   ngOnDestroy(): void {

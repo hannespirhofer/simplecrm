@@ -3,7 +3,7 @@
   <h2 mat-dialog-title>New Note</h2>
   <mat-dialog-content class="content-outline-fix">
 
-    <div class="flex row gap-16">
+    <div class="flex col gap-16">
       <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
         <input name="title" [(ngModel)]="title" [disabled]="loading" matInput placeholder="Title" required>
@@ -11,13 +11,11 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Text</mat-label>
-        <input name="lastname" [(ngModel)]="text" [disabled]="loading" matInput placeholder="Text" required>
+        <textarea name="text" matInput [(ngModel)]="text" placeholder="Text" required=""></textarea>
       </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Favorite</mat-label>
-      <input name="favorite" [(ngModel)]="isMarked" [disabled]="loading" matInput placeholder="Favorite" required>
-    </mat-form-field>
+      <mat-checkbox name="favorite" [(ngModel)]="isMarked" [disabled]="loading">Mark me as Favorite</mat-checkbox>
+
     </div>
 
   </mat-dialog-content>

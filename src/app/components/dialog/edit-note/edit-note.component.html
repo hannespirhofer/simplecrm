@@ -1,0 +1,30 @@
+<form [formGroup]="noteForm" (ngSubmit)="saveNote()">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <h2 mat-dialog-title>Edit Note</h2>
+  <mat-dialog-content class="content-outline-fix">
+
+    <div class="flex col gap-16">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input formControlName="title" matInput placeholder="Title" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Text</mat-label>
+        <textarea formControlName="text" matInput placeholder="Text" required></textarea>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="isMarked" checked="{{ note.isMarked }}" class="flex ac">
+        <span>Favorite</span>
+      </mat-checkbox>
+
+    </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button type="button" mat-button (click)="closeDialog()">Cancel</button>
+    <button mat-button type="submit" [disabled]="!noteForm.valid">Save</button>
+  </mat-dialog-actions>
+</form>

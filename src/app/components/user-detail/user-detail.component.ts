@@ -13,7 +13,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { UserService } from '../../firebase-services/user.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EditUserComponent } from '../edit-user/edit-user.component';
+import { EditUserComponent } from '../dialog/edit-user/edit-user.component';
 import { Subscription } from 'rxjs';
 import { CdkTextareaAutosize, TextFieldModule } from '@angular/cdk/text-field';
 

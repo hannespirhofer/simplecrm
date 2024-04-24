@@ -1,22 +1,24 @@
 <mat-accordion>
   <mat-expansion-panel *ngFor="let note of notes">
     <mat-expansion-panel-header>
-      <mat-panel-title>
+      <mat-panel-title class="flex row ac gap-16">
         {{ note.title }}
       </mat-panel-title>
       <mat-panel-description>
+        <mat-icon *ngIf="note.isMarked" [class.favorite]="note.isMarked">star</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
+
     <p>{{ note.text }}</p>
     <mat-action-row>
-      <button mat-button >Edit</button>
-      <button mat-button color="warn">Delete</button>
+      <button mat-button (click)="openEditNoteDialog(note)">Edit</button>
+      <button mat-button color="warn" (click)="deleteNote(note.id)">Delete</button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
 
 
-<button (click)="openDialog()" class="btn-add-note" mat-fab color="primary" matTooltip="Create a new Note"
+<button (click)="openNewNoteDialog()" class="btn-add-note" mat-fab color="primary" matTooltip="Create a new Note"
   matTooltipPosition="above" matTooltipHideDelay="100000">
   <mat-icon>add</mat-icon>
 </button>

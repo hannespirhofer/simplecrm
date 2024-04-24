@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Note } from '../../../../models/note.interface';
 import { NotesService } from '../../../firebase-services/notes.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-add-note',
@@ -24,14 +25,15 @@ import { NotesService } from '../../../firebase-services/notes.service';
     MatFormField,
     MatDatepickerModule,
     FormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatCheckboxModule
   ],
   templateUrl: './add-note.component.html',
   styleUrl: './add-note.component.scss'
 })
 export class AddNoteComponent {
 
-  constructor(public dialogRef: MatDialogRef<AddNoteComponent>, private noteService: NotesService){}
+  constructor(public dialogRef: MatDialogRef<AddNoteComponent>, private noteService: NotesService) { }
 
   loading: boolean = false;
   title = "";
