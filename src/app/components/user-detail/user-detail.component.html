@@ -6,7 +6,7 @@
 
     <mat-menu #userMenu="matMenu" class="userMenu" xPosition="before">
       <div class="menuContainer">
-        <button mat-button color="" (click)="openDialog()">Edit</button>
+        <button mat-button color="" (click)="openDialog()" [disabled]="user.isDefault">Edit</button>
         <button mat-button color="warn" (click)="deleteUser()" [disabled]="user.isDefault">Delete</button>
       </div>
     </mat-menu>
