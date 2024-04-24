@@ -75,6 +75,10 @@ export class UserDetailComponent {
   }
 
   async deleteUser() {
+    if (this.user.isDefault) {
+      console.warn('You cant delete a default user');
+      return;
+    }
     try {
       await this.userService.deleteUser(this.userId);
       this.router.navigateByUrl('/user');

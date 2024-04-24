@@ -111,7 +111,8 @@ export class UserService {
       zipcode: obj.zipcode,
       city: obj.city,
       email: obj.email,
-      notes: obj.notes
+      notes: obj.notes,
+      isDefault: obj.isDefault
     };
   }
 
@@ -125,7 +126,8 @@ export class UserService {
       zipcode: obj.zipcode ?? "",
       city: obj.city ?? "",
       email: obj.email ?? "",
-      notes: obj.notes ?? ""
+      notes: obj.notes ?? "",
+      isDefault: obj.isDefault ?? false
     }
   }
 

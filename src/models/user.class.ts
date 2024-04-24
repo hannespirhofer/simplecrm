@@ -8,6 +8,7 @@ export class User {
   city: string = '';
   email: string = '';
   notes: string = '';
+  isDefault: boolean = false;
 
   constructor(init?: Partial<User>) {
     Object.assign(this, init);
