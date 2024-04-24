@@ -4,7 +4,7 @@ import { NotesService } from '../../firebase-services/notes.service';
 import { Note } from '../../../models/note.interface';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -37,7 +37,8 @@ export class NotesListComponent {
   constructor(
     private ns: NotesService,
     public dialog: MatDialog,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+  private route: Router) { }
 
   noteId: string = '';
   notes: Note[] = [];
@@ -52,7 +53,10 @@ export class NotesListComponent {
     })
 
     this.activatedRoute.queryParams.subscribe(params => {
-      this.openedNoteId = params['id'];
+      if (params['id']) {
+        this.openedNoteId = params['id'];
+        this.route.navigateByUrl('/notes', { replaceUrl: true })
+      }
     })
   }
 
@@ -75,6 +79,10 @@ export class NotesListComponent {
         note: note
       }
     })
+  }
+
+  setStep(id: string) {
+    this.openedNoteId = id;
   }
 
   ngOnDestroy(): void {

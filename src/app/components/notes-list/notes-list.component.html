@@ -1,5 +1,5 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let note of notes" [expanded]="note.id === openedNoteId">
+  <mat-expansion-panel *ngFor="let note of notes" [expanded]="note.id === openedNoteId" (opened)="setStep(note.id)">
     <mat-expansion-panel-header>
       <mat-panel-title class="flex row ac gap-16">
         {{ note.title }}
