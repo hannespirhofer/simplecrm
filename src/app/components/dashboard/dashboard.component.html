@@ -1,13 +1,19 @@
 <div class="container">
-  <mat-grid-list cols="3" rowHeight="100px" gutterSize="16px">
+  <mat-grid-list cols="3" rowHeight="110px" gutterSize="16px">
 
     <mat-grid-tile colspan="2" rowspan="2">
       <mat-card class="dash-card">
         <mat-card-header>
           <mat-card-title>Latest Notes</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          Show notes here
+        <mat-card-content class="flex jc-start">
+
+          <mat-list role="list" class="full-width">
+            <mat-list-item class="note-item full-width" *ngFor="let note of notes | slice:0:3" role="listitem">
+              <div [routerLink]="['/notes']" [queryParams]="{ id: note.id }">{{ note.title }}</div>
+            </mat-list-item>
+          </mat-list>
+
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

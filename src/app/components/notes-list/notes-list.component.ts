@@ -37,11 +37,11 @@ export class NotesListComponent {
   constructor(
     private ns: NotesService,
     public dialog: MatDialog,
-    private aR: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) { }
 
   noteId: string = '';
   notes: Note[] = [];
-  panelOpenState = false;
+  openedNoteId: string | null = null;
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -49,6 +49,10 @@ export class NotesListComponent {
     this.ns.fetchNotes();
     this.subscription = this.ns.notes$.subscribe(notes => {
       this.notes = notes;
+    })
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.openedNoteId = params['id'];
     })
   }
 

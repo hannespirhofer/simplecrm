@@ -4,7 +4,7 @@
  }
 
  mat-card-title {
-  color: rgba(0,0,0,.4);
+   color: rgba(0, 0, 0, .4);
  }
 
  mat-card-content {
@@ -13,4 +13,11 @@
    justify-content: center;
    align-items: center;
    font-size: 25pt;
+ }
+
+ .note-item {
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
  }
